@@ -18,6 +18,14 @@ faker_local <- faker_global$Faker(locale = generator_language_encoding)
 faker_local$address()
 
 
+l1 = as.list ( 'a','b')
+l2 = as.list ( 'c','d')
+
+l3 <- as.data.frame(cbind (l1,l2))
+l4 <- as.data.frame(rbind (l1,l2))
+
+
+
 generate_data <- function (nrow) {
   
   lst <- list()  

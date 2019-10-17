@@ -82,3 +82,39 @@ df <- rbind ( hindi_address, english_address)
 
 
 
+###------------------ Paramertized  encoding 2 
+
+
+available_locales = list("ru_RU","hi_IN","EN")
+
+
+faker_global <-import('faker')
+#globalenv(faker_global)
+
+generate_data <- function (data_locale , nrow, data_class, data_value) {
+  faker_local <- faker_global$Faker(locale = data_locale)
+  lst <- list()  
+  
+  df <- data.frame(  ) 
+  
+  for (i in 1:nrow) {
+    
+    
+    value <- data_value
+    class <- data_class
+    locale <- data_locale
+    
+    lst[[i]]   <- list (class, value , locale)
+    
+  }
+  df <- as.data.frame(do.call(rbind,lst))
+  names(df)[1]<-'data_class'
+  names(df)[2]<-'data_value'
+  names(df)[3]<-'data_locale'
+  return(df)
+}
+
+
+hindi_address <- generate_data(data_locale = 'hi_IN',nrow=10, data_class="name" , data_value=faker_local$name())
+english_address <- generate_data(data_locale = 'EN',nrow=20, data_class="age" , data_value=faker_local$address())
+

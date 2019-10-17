@@ -23,8 +23,12 @@ generate_data <- function (nrow) {
   lst <- list()  
   for (i in 1:nrow) {
     
-    lst[[i]]   <- list (faker_local$name())
-    data<- as.data.frame(lst)
+    
+    value <- faker_local$name()
+    class <- 'faker$name'
+    lst[[i]]   <- list (class, value )
+    
+   # data<- as.data.frame(lst)
     
         }
     return(lst)
@@ -34,6 +38,9 @@ generate_data <- function (nrow) {
   
 a<- generate_data(10)
 a
+
+
+a[[10]][[2]]
 
 b<- do.call(rbind,a)
 
